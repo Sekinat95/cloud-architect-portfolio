@@ -31,14 +31,14 @@ CUSTOMER_COUNT = 10000
 customers = []
 for _ in range(CUSTOMER_COUNT):
     customers.append((
-        fake.first_name(),
-        fake.last_name(),
-        fake.unique.email(),
-        fake.phone_number()[:20],
-        fake.street_address(),
-        fake.city(),
-        fake.country()
-    ))
+    fake.first_name()[:50],
+    fake.last_name()[:50],
+    fake.unique.email()[:100],
+    fake.phone_number()[:20],
+    fake.street_address()[:200],
+    fake.city()[:50],
+    fake.country()[:50]
+))
 cursor.executemany("""
     INSERT INTO customers
     (first_name, last_name, email, phone, address, city, country)
@@ -73,23 +73,20 @@ ORDER_COUNT = 50000
 statuses = ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
 order_ids = []
 for i in range(0, ORDER_COUNT, 1000):
-    batch = []
     for _ in range(min(1000, ORDER_COUNT - i)):
-        batch.append((
+        cursor.execute("""
+            INSERT INTO orders (customer_id, order_date, status, total_amount)
+            VALUES (%s, %s, %s, %s)
+            RETURNING order_id
+        """, (
             random.randint(1, CUSTOMER_COUNT),
             fake.date_time_between(start_date='-2y', end_date='now'),
             random.choice(statuses),
             0
         ))
-    cursor.executemany("""
-        INSERT INTO orders (customer_id, order_date, status, total_amount)
-        VALUES (%s, %s, %s, %s)
-        RETURNING order_id
-    """, batch)
-    order_ids.extend([row[0] for row in cursor.fetchall()])
+        order_ids.append(cursor.fetchone()[0])
     conn.commit()
     print(f"  Orders batch {i+1000}/{ORDER_COUNT}")
-
 # Generate order items
 print("Generating order items...")
 order_items = []
