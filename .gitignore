@@ -1,0 +1,15 @@
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+**/.terraform/
+terraform.tfvars
+tfplan
+
+# Environment files
+.env
+**/.env
+
+# Python
+__pycache__/
+*.pyc
