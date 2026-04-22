@@ -22,12 +22,16 @@ cat >> /etc/postgresql/$PG_VERSION/main/postgresql.conf << EOF
 wal_level = logical
 max_replication_slots = 10
 max_wal_senders = 10
+listen_addresses = '*'
 EOF
 
 # Allow connections from target VPC subnet
+# Allow connections from target VPC subnet and DMS private connection subnet
 cat >> /etc/postgresql/$PG_VERSION/main/pg_hba.conf << EOF
 host    all         all         10.0.2.0/24     md5
 host    replication all         10.0.2.0/24     md5
+host    all         all         10.0.3.0/29     md5
+host    replication all         10.0.3.0/29     md5
 EOF
 
 # Create migration user and database

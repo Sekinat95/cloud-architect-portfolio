@@ -92,10 +92,10 @@ resource "random_password" "vpn_secret" {
 resource "google_compute_vpn_tunnel" "source_to_target" {
   name               = "source-to-target"
   region             = var.region
-  target_vpn_gateway        = google_compute_vpn_gateway.source_vpn_gateway.self_link
+  target_vpn_gateway = google_compute_vpn_gateway.source_vpn_gateway.self_link
   peer_ip            = google_compute_address.target_vpn_ip.address
   shared_secret      = random_password.vpn_secret.result
-  
+
 
   local_traffic_selector  = ["10.0.1.0/24"]
   remote_traffic_selector = ["10.0.2.0/24"]
@@ -110,10 +110,10 @@ resource "google_compute_vpn_tunnel" "source_to_target" {
 resource "google_compute_vpn_tunnel" "target_to_source" {
   name               = "target-to-source"
   region             = var.region
-  target_vpn_gateway        = google_compute_vpn_gateway.target_vpn_gateway.self_link
+  target_vpn_gateway = google_compute_vpn_gateway.target_vpn_gateway.self_link
   peer_ip            = google_compute_address.source_vpn_ip.address
   shared_secret      = random_password.vpn_secret.result
-  
+
 
   local_traffic_selector  = ["10.0.2.0/24"]
   remote_traffic_selector = ["10.0.1.0/24"]
