@@ -23,7 +23,7 @@ resource "google_compute_firewall" "allow_postgres_inbound" {
     ports    = ["5432"]
   }
 
-  source_ranges = ["10.0.2.0/24"]
+  source_ranges = ["10.0.2.0/24","10.0.3.0/29"]
 }
 
 # Allow SSH via IAP
