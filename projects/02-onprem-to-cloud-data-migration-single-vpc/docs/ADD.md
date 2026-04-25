@@ -1,3 +1,14 @@
+# Overview
+A simulated lift-and-shift data migration between on-prem and cloud enviroments with continuous replication through change data capture (CDC). 
+
+
+# Architecture Diagrams
+
+[Full Architectural Overview](../diagrams/architecture-overview.png)
+[Network Topology](../diagrams/architecture-overview.png)
+[Migration Flow](../diagrams/architecture-overview.png)
+
+
 # Architecture Decision Records
 
 | ADR | Title | Status | Date |
@@ -17,8 +28,3 @@
 
 
 
-# Architecture Diagrams
-
-[Full Architectural Overview](../diagrams/architecture-overview.png)
-[Network Topology](../diagrams/architecture-overview.png)
-[Migration Flow](../diagrams/architecture-overview.png)
