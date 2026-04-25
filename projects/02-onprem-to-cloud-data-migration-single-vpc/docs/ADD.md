@@ -4,9 +4,9 @@ A simulated lift-and-shift data migration between on-prem and cloud enviroments 
 
 # Architecture Diagrams
 
-[Full Architectural Overview](../diagrams/architecture-overview.png)
-[Network Topology](../diagrams/architecture-overview.png)
-[Migration Flow](../diagrams/architecture-overview.png)
+![Full Architectural Overview](../diagrams/architecture-overview.png)
+![Network Topology](../diagrams/architecture-overview.png)
+![Migration Flow](../diagrams/architecture-overview.png)
 
 
 # Architecture Decision Records

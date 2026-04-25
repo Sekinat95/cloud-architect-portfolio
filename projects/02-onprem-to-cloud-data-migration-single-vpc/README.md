@@ -14,7 +14,7 @@ VPC via Dedicated Interconnect or Cloud VPN.
 
 ## Architecture
 
-[Architecture](./diagrams/architecture-overview.png)
+![Architecture](./diagrams/architecture-overview.png)
 
 ---
 
