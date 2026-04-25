@@ -1,3 +1,3 @@
-# cloud-architect-portfolio
+# CLOUD ARCHITECT PORTFOLIO
 
-# Project Tree
+- [02-onprem-to-cloud-data-migration-SINGLE-VPC](../02-onprem-to-cloud-data-migration-single-vpc) — Single VPC contains both source and destination databases in a simulation of continuous DB migration using database migration service (DMS) and change data capture (CDC)
