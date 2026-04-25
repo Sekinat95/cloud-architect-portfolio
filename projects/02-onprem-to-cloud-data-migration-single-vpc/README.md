@@ -20,11 +20,11 @@ VPC via Dedicated Interconnect or Cloud VPN.
 
 ## Key Architectural Decisions
 Brief summary of the main decisions made, linking to ADRs.
-- [ADR-001](./docs/decisions/ADR-001-...) — single vpc 
-- [ADR-002](./docs/decisions/ADR-002-...) — DMS
-- [ADR-003](./docs/decisions/ADR-003-...) — cloudSQL v AlloyDB
-- [ADR-004](./docs/decisions/ADR-005-...) — pglogical for CDC
-- [ADR-005](./docs/decisions/ADR-004-...) — IaC via Terraform
+- [ADR-001](./docs/decisions/ADR-001-vpc-and-vpn-network-design.md) — single vpc 
+- [ADR-002](./docs/decisions/ADR-002-DMS-vs-alternatives.md) — DMS
+- [ADR-003](./docs/decisions/ADR-003-cloudsql-vs-alloydb.md) — cloudSQL v AlloyDB
+- [ADR-004](./docs/decisions/ADR-004-pglogical-for-CDC.md) — pglogical for CDC
+- [ADR-005](./docs/decisions/ADR-005-Terraform-for-IaC.md) — IaC via Terraform
 
 ## Network Design
 
