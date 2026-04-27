@@ -4,7 +4,7 @@ This respositary contains all the artefacts of each portfolio project implemente
 
 Summary of all completed projects are as follows:
 
-- **Data Migration with CDC**
+- **PROJECT1 -> Data Migration with CDC**
     - *Project Folder*: [02-onprem-to-cloud-data-migration-single-vpc](./projects/02-onprem-to-cloud-data-migration-single-vpc/) 
     - *Short Description*: Single VPC contains both source and destination databases in a simulation of continuous DB migration using database migration service (DMS) and change data capture (CDC)
     - *Diagram*: [Full Architectural Overview](../diagrams/architecture-overview.png) 
