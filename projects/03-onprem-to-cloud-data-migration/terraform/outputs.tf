@@ -7,12 +7,12 @@ output "target_vpc_id" {
   value = google_compute_network.target_vpc.id
 }
 
-output "source_vpn_ip" {
-  value = google_compute_address.source_vpn_ip.address
+output "source_router" {
+  value = google_compute_router.source_router.name
 }
 
-output "target_vpn_ip" {
-  value = google_compute_address.target_vpn_ip.address
+output "target_router" {
+  value = google_compute_router.target_router.name
 }
 
 # Compute

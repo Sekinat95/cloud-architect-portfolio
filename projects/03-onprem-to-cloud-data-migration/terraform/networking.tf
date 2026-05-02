@@ -7,11 +7,11 @@ resource "google_compute_network" "source_vpc" {
 }
 
 resource "google_compute_subnetwork" "source_subnet" {
-  name          = "source-subnet"
-  ip_cidr_range = "10.0.1.0/24"
-  region        = var.region
-  network       = google_compute_network.source_vpc.id
-  private_ip_google_access = true  # ← ADD
+  name                     = "source-subnet"
+  ip_cidr_range            = "10.0.1.0/24"
+  region                   = var.region
+  network                  = google_compute_network.source_vpc.id
+  private_ip_google_access = true # ← ADD
 }
 
 # Allow PostgreSQL from target VPC only
@@ -24,7 +24,7 @@ resource "google_compute_firewall" "allow_postgres_inbound" {
     ports    = ["5432"]
   }
 
-  source_ranges = ["10.0.2.0/24","10.0.3.0/29"]
+  source_ranges = ["10.0.2.0/24", "10.0.3.0/29"]
 }
 
 # Allow SSH via IAP

@@ -1,4 +1,4 @@
-# ── Source Connection Profile ─────────────────────────────────
+# Source profile
 resource "google_database_migration_service_connection_profile" "source_profile" {
   location              = var.region
   connection_profile_id = "source-postgres-profile"
@@ -10,14 +10,14 @@ resource "google_database_migration_service_connection_profile" "source_profile"
     password = data.google_secret_manager_secret_version.db_password.secret_data
   }
 
-  depends_on = [
-    time_sleep.wait_for_postgres,
-    google_compute_vpn_tunnel.source_to_target,
-    google_compute_vpn_tunnel.target_to_source
-  ]
+  lifecycle {
+    ignore_changes = [display_name]
+  }
+
+  depends_on = [time_sleep.wait_for_postgres]
 }
 
-# ── Destination Connection Profile ────────────────────────────
+# Destination profile
 resource "google_database_migration_service_connection_profile" "destination_profile" {
   location              = var.region
   connection_profile_id = "destination-cloudsql-profile"
@@ -36,7 +36,11 @@ resource "google_database_migration_service_connection_profile" "destination_pro
   }
 
   lifecycle {
-    ignore_changes = [display_name, cloudsql[0].settings[0].zone]
+    ignore_changes = [
+      display_name,
+      cloudsql[0].settings[0].zone,
+      cloudsql[0].settings[0].auto_storage_increase
+    ]
   }
 
   depends_on = [
