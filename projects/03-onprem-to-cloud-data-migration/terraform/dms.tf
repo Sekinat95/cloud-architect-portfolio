@@ -35,7 +35,11 @@ resource "google_database_migration_service_connection_profile" "destination_pro
     }
   }
 
+  lifecycle {
+    ignore_changes = [display_name, cloudsql[0].settings[0].zone]
+  }
+
   depends_on = [
-    google_database_migration_service_connection_profile.source_profile,
+    google_database_migration_service_connection_profile.source_profile
   ]
 }

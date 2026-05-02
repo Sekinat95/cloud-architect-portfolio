@@ -17,8 +17,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "sekinat-data-migration-poc-terraform-state"
-    prefix = "02-POC"
+    bucket = "sekinat-migration-two-vpcs-terraform-state"
+    prefix = "03-POC"
   }
 }
 

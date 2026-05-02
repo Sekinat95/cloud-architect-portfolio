@@ -11,6 +11,7 @@ resource "google_compute_subnetwork" "source_subnet" {
   ip_cidr_range = "10.0.1.0/24"
   region        = var.region
   network       = google_compute_network.source_vpc.id
+  private_ip_google_access = true  # ← ADD
 }
 
 # Allow PostgreSQL from target VPC only
@@ -91,16 +92,32 @@ resource "google_compute_firewall" "allow_from_source_vpc" {
 
 # ── Private Service Access for Cloud SQL ──────────────────────
 
-resource "google_compute_global_address" "private_service_access" {
-  name          = "private-service-access"
+# Private Service Access in SOURCE VPC — for DMS connectivity
+resource "google_compute_global_address" "private_service_access_source" {
+  name          = "private-service-access-source"
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  prefix_length = 16
+  network       = google_compute_network.source_vpc.id
+}
+
+resource "google_service_networking_connection" "private_vpc_connection_source" {
+  network                 = google_compute_network.source_vpc.id
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.private_service_access_source.name]
+}
+
+# Private Service Access in TARGET VPC — for Cloud SQL private IP
+resource "google_compute_global_address" "private_service_access_target" {
+  name          = "private-service-access-target"
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
   prefix_length = 16
   network       = google_compute_network.target_vpc.id
 }
 
-resource "google_service_networking_connection" "private_vpc_connection" {
+resource "google_service_networking_connection" "private_vpc_connection_target" {
   network                 = google_compute_network.target_vpc.id
   service                 = "servicenetworking.googleapis.com"
-  reserved_peering_ranges = [google_compute_global_address.private_service_access.name]
+  reserved_peering_ranges = [google_compute_global_address.private_service_access_target.name]
 }
