@@ -5,7 +5,7 @@ steps:
     args:
       - '-c'
       - |
-        pip install kfp google-cloud-aiplatform --quiet
+        pip install kfp google-cloud-aiplatform[pipelines] --quiet
         python projects/04-mlops-pipeline-inference-only/pipeline/pipeline.py
 
   # Step 2: Copy compiled pipeline.yaml to GCS
@@ -22,7 +22,7 @@ steps:
     args:
       - '-c'
       - |
-        pip install google-cloud-aiplatform --quiet
+        pip install google-cloud-aiplatform[pipelines] --quiet
         python projects/04-mlops-pipeline-inference-only/pipeline/run_pipeline.py
 
 options:
