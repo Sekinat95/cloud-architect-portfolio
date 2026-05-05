@@ -1,15 +1,14 @@
 steps:
-  # Step 1: Install dependencies
+  # Step 1: Install dependencies and compile pipeline
   - name: 'python:3.10'
-    entrypoint: pip
-    args: ['install', 'kfp', 'google-cloud-aiplatform', '--quiet']
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        pip install kfp google-cloud-aiplatform --quiet
+        python projects/04-mlops-pipeline-inference-only/pipeline/pipeline.py
 
-  # Step 2: Compile pipeline
-  - name: 'python:3.10'
-    entrypoint: python
-    args: ['projects/04-mlops-pipeline-inference-only/pipeline/pipeline.py']
-
-  # Step 3: Copy compiled pipeline.yaml to GCS
+  # Step 2: Copy compiled pipeline.yaml to GCS
   - name: 'gcr.io/cloud-builders/gsutil'
     args: [
       'cp',
@@ -17,10 +16,14 @@ steps:
       'gs://mlops-pipeline-inference-only-pipeline-root/compiled/pipeline.yaml'
     ]
 
-  # Step 4: Submit pipeline run to Vertex AI
+  # Step 3: Install dependencies and submit pipeline run
   - name: 'python:3.10'
-    entrypoint: python
-    args: ['projects/04-mlops-pipeline-inference-only/pipeline/run_pipeline.py']
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        pip install google-cloud-aiplatform --quiet
+        python projects/04-mlops-pipeline-inference-only/pipeline/run_pipeline.py
 
 options:
   logging: CLOUD_LOGGING_ONLY
