@@ -15,3 +15,8 @@ variable "zone" {
   type        = string
   default     = "europe-west2-a"
 }
+variable "project_number" {
+  description = "GCP project number"
+  type        = string
+  default     = "372023850207"
+}
