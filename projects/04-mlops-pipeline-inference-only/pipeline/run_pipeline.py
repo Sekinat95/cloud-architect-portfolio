@@ -9,7 +9,6 @@ import uuid
 PROJECT_ID = "mlops-pipeline-inference-only"
 REGION = "europe-west2"
 PIPELINE_ROOT = f"gs://{PROJECT_ID}-pipeline-root"
-SERVICE_ACCOUNT = f"mlops-pipeline-sa@{PROJECT_ID}.iam.gserviceaccount.com"
 
 RUN_ID = f"run-{uuid.uuid4().hex[:8]}"
 
@@ -27,7 +26,7 @@ def main():
     )
 
     print(f"Submitting pipeline run: {RUN_ID}")
-    job.submit(service_account=SERVICE_ACCOUNT)
+    job.submit()
     print(f"Pipeline submitted successfully: {RUN_ID}")
     print(f"Monitor at: https://console.cloud.google.com/vertex-ai/pipelines?project={PROJECT_ID}")
 
