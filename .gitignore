@@ -1,8 +1,10 @@
 # Terraform
-*.tfstate
-*.tfstate.backup
 .terraform/
 **/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfplan
 terraform.tfvars
 tfplan
 
@@ -13,3 +15,8 @@ tfplan
 # Python
 __pycache__/
 *.pyc
+*.pyo
+venv/
+
+# Hugging Face cache
+~/.cache/huggingface/
