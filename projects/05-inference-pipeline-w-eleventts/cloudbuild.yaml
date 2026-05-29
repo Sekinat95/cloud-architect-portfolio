@@ -1,0 +1,31 @@
+steps:
+  # Step 1: Install dependencies and compile pipeline
+  - name: 'python:3.10'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        pip install kfp google-cloud-aiplatform[pipelines] --quiet
+        python projects/04-mlops-pipeline-inference-only/pipeline/pipeline.py
+
+  # Step 2: Copy compiled pipeline.yaml to GCS
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: [
+      'cp',
+      'projects/04-mlops-pipeline-inference-only/pipeline/pipeline.yaml',
+      'gs://mlops-pipeline-inference-only-pipeline-root/compiled/pipeline.yaml'
+    ]
+
+  # Step 3: Install dependencies and submit pipeline run
+  - name: 'python:3.10'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        pip install google-cloud-aiplatform[pipelines] --quiet
+        python projects/04-mlops-pipeline-inference-only/pipeline/run_pipeline.py
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: '1200s'
