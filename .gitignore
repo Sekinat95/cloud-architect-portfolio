@@ -20,3 +20,9 @@ venv/
 
 # Hugging Face cache
 ~/.cache/huggingface/
+
+
+# large files
+/home/sekinat95/cloud-architect-portfolio/projects/06-phd-to-gcp-xr-ml-drx/data/concatenated_df_DN_train.csv
+cloud-architect-portfolio/projects/06-phd-to-gcp-xr-ml-drx/data/concatenated_df_DN_train.csvprojects/06-phd-to-gcp-xr-ml-drx/data/*.csv
+projects/06-phd-to-gcp-xr-ml-drx/data/*.csv
