@@ -7,7 +7,7 @@
 *.tfplan
 terraform.tfvars
 tfplan
-
+**/data
 # Environment files
 .env
 **/.env
