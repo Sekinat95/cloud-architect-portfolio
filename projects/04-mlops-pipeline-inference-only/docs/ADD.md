@@ -6,7 +6,7 @@ An Inference pipeline of a NLP sentiments analysis done on financial data. The w
 - The pipeline components consist of managed GCP services and tools.
 
 There are two stages of this inference pipeline implementation. 
-- The first one invloves the manual triggering of the pipeline by making an inference request throuhg a python script. - The second involves the addition of CI/CD into the pipeline to trigger inference calls on the online endpoint.
+- The first one involves the manual triggering of the pipeline by making an inference request through a python script. - The second involves the addition of CI/CD into the pipeline to trigger inference calls on the online endpoint.
 
 The following are the architectural decisions that were made:
 
