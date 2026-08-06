@@ -1,4 +1,4 @@
-# CLOUD SYSTEM MLOPs & ARCHITECTURE  PORTFOLIO
+# CLOUD SYSTEM MLOPs PORTFOLIO
 This repository contains artefacts of independent projects carried out under machine learning engineering (MLE) and operations (MLOps) as well as cloud systems architecture (as much as possible). All projects except one are Cloud ML projects but all projects have followed the format of cloud architecture definition document (ADD). 
 
 Each project is contained in a distinct folder which follows the following structure:
