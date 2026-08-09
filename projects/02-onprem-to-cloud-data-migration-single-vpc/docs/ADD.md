@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-This project demonstrates a continuous database migration from a simulated on-premises
-PostgreSQL database to Google Cloud SQL PostgreSQL 15 using Google Cloud Database
-Migration Service (DMS) with Change Data Capture (CDC).
+This project demonstrates a continuous database migration from a simulated on-premises PostgreSQL database to Google Cloud SQL PostgreSQL 15 using Google Cloud Database Migration Service (DMS) with Change Data Capture (CDC).
 
 The architecture uses a single GCP VPC to simulate the network topology of a real
 production migration where an on-premises database is connected to a single cloud
 VPC via Dedicated Interconnect or Cloud VPN.
+
+As will be further explained, this design choice is deliberate and was informed by the limitations of attempting such a simulation within the bounds of GCP's own policies.
 
 ---
 

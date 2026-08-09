@@ -41,21 +41,21 @@ Each project under `/projects` is a self-contained, independently deployable PoC
     - *Project Folder*: [02-onprem-to-cloud-data-migration-single-vpc](./projects/02-onprem-to-cloud-data-migration-single-vpc/) 
     - *Short Description*: Single VPC contains both source and destination databases in a simulation of continuous DB migration using database migration service (DMS) and change data capture (CDC)
     - *README*: [Single VPC DB Migrattion README](./projects/02-onprem-to-cloud-data-migration-single-vpc/README.md)
-    - *Diagram*: [Full Architectural Overview](../diagrams/architecture-overview.png) 
+    - *Diagram*: [Full Architectural Overview](./projects/02-onprem-to-cloud-data-migration-single-vpc/diagrams/architecture-overview.mmd) 
    
 
 - **PROJECT1_2 -> DB Migration with CDC - Two VPCs**
     - *Project Folder*: [03-onprem-to-cloud-data-migration](./projects/03-onprem-to-cloud-data-migration/)
     - *Short Description*: Using two VPCs, simulating an on-prem to cloud DB migration and demonstrating why it fails in GCP.
     - *README*: [Two VPCs DB Migration README](./projects/03-onprem-to-cloud-data-migration/README.md)
-    - *Diagram*: [Full Architecture Overview]()
+    - *Diagram*: [Full Architecture Overview](./projects/03-onprem-to-cloud-data-migration/diagrams/architecture-overview.mmd)
     <!-- - *Demo of Implementation* -->
 
 - **PROJECT2 -> MLOps Inference Pipeline**
     - *Project Folder*: [04-mlops-pipeline-inference-only](./projects/04-mlops-pipeline-inference-only/)
     - *Short Description*: End-to-end inference pipeline of financial sentiments analysis using FinBERT (a domain specific transformer model finetuned on financial text) covering ingestion, preprocessing, model serving and prediction output. 
     - *README*: [INFERENCE PIPELINE README](./projects/04-mlops-pipeline-inference-only/README.md)
-    - *Diagram*: [Full Architectural Overview]()
+    - *Diagram*: [Full Architectural Overview](./projects/03-onprem-to-cloud-data-migration/diagrams/architecture-overview.mmd)
     <!-- - *Demo of Implementation*: -->
 
 
@@ -63,7 +63,7 @@ Each project under `/projects` is a self-contained, independently deployable PoC
     - *Project Folder*: [05-inference-pipeline-w-eleventts](./projects/05-inference-pipeline-w-eleventts/)
     - *Short Description*: End-to-end inference pipeline of financial sentiments analysis using finBERT(the popular final model trained on top of BERT) and with text to speech integration using elevenLabs TTS API.
     - *README*: [ELEVENTTS INTEGRATION README](./projects/05-inference-pipeline-w-eleventts/README.md)
-    - *Diagram*: [Full Architectural Overview]()
+    - *Diagram*: [Full Architectural Overview](./projects/04-mlops-pipeline-inference-only/diagrams/architecture-overview.mmd)
 
 - **PROJECT4 -> END-TO-END Forecasting Pipeline (Data Ingestion - Model Monitoring) => PhD Replication**
     - *Project Folder*: [06-phd-to-gcp-xr-ml-drx](./projects/06-phd-to-gcp-xr-ml-drx/)
