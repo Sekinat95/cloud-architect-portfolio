@@ -69,14 +69,14 @@ Each project under `/projects` is a self-contained, independently deployable PoC
     - *Project Folder*: [06-phd-to-gcp-xr-ml-drx](./projects/06-phd-to-gcp-xr-ml-drx/)
     - *Short Description*: From data ingestion to model monitoring; Implementing the full cloud MLE workflow using my PhD project which improved energy efficiency in cellular networks UEs using Long Short Term Memory (LSTM) and Gaussian Process Regression (GPR) algorithms.
     - *README*: [Full Pipeline README](./projects/06-phd-to-gcp-xr-ml-drx/README.md)
-    - *Diagram*: [Full Architectural Overview]()
+    - *Diagram*: [Full Architectural Overview](./projects/06-phd-to-gcp-xr-ml-drx/diagrams/architecture-overview.mmd)
 
 
 - **PROJECT5 -> Retreival Augmented Generation (RAG) Pipeline**
     - *Project Folder*: [07-RAG-pipeline](./projects/07-RAG-pipeline/)
     - *Short Description*: A basic RAG pipeline to query a pool of job application cover letters.
     - *README*: [RAG README](./projects/07-RAG-pipeline/README.md)
-    - *Diagram*: [Full Architectural Overview]()
+    - *Diagram*: [Full Architectural Overview](./projects/07-RAG-pipeline/diagrams/architecture-overview.mmd)
 
 
 

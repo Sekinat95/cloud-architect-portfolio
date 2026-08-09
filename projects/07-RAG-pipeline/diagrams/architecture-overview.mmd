@@ -1,0 +1,64 @@
+%% graph TD
+%%   GCS["Raw XR service time series data"] --> EEPL
+%%     subgraph EEPL["End-to-end pipeline"]
+%%       PRS["Processed data"] -->GP & LSTM
+%%       GP["Guassian process regression <br/> training"] --> GPOUT
+%%       LSTM["Long Short Term Memory <br/> training"] --> LSTMOUT
+%%       GPOUT["GP Batch Inference"] --> MDLUGP
+%%       LSTMOUT["LSTM Batch Inference"] --> MDLULSTM
+%%       MDLUGP["GP Model upload <br/> VA Model Registry"] --> TEST
+%%       MDLULSTM["LSTM Model Upload"] --> TEST
+%%     end
+%%     subgraph TEST["Metric Calculations "]
+%%     end
+%%     subgraph TRDWN["Tear down"]
+%%     end
+%%   GCS --> EEPL --> TEST --> TRDWN
+
+
+%% graph TD
+%%   GCS["Data ingestion"] --> RAGPL
+%%     subgraph RAGPL["RAG Pipeline"] 
+%%       LGCH["LangChain Document Loaders"] --> LGPRS
+%%       LGPRS["Preprocessing <br/> Langchain text splitters"] --> VAEMB
+%%       VAEMB["VA Embedding API <br/> langchain-google-vertexai"] --> STR
+%%       STR["CloudSQL for postgres"] --> IND
+%%       IND["pgvector extension via langchain's pgvector"] --> RTV 
+%%       RTV["same storage/indexing instance <br/> langchain retreival interface"] --> RTV
+%%       AUG["Augmentation and Generation <br/> chatvertexai, langchain lcel chains"] --> AUG
+%%     end
+
+%%     subgraph PPRC["Post-processing <br/> custom python checks, API safety filters"]
+%%     end
+
+%%     subgraph EVAL["RAGAS package"]
+%%     end
+
+%%     subgraph MON["GCP Cloud Observability suite"]
+%%     end
+
+%% RAGPL --> PPRC --> EVAL --> MON
+
+
+graph TD
+  GCS["Data ingestion"] --> RAGPL
+  subgraph RAGPL["RAG Pipeline"]
+      LGCH["LangChain Document Loaders"] --> LGPRS
+      LGPRS["Preprocessing <br/> Langchain text splitters"] --> VAEMB
+      VAEMB["VA Embedding API <br/> langchain-google-vertexai"] --> STR
+      STR["CloudSQL for postgres"] --> IND
+      IND["pgvector extension via langchain's pgvector"] --> RTV
+      RTV["same storage/indexing instance <br/> langchain retreival interface"] --> AUG
+      AUG["Augmentation and Generation <br/> chatvertexai, langchain lcel chains"] --> RAGPL_END["RAG Output"]
+    end
+
+  subgraph PPRC["Post-processing <br/> custom python checks, API safety filters"]
+  end
+
+  subgraph EVAL["RAGAS package"]
+  end
+
+  subgraph MON["GCP Cloud Observability suite"]
+  end
+
+  RAGPL --> PPRC --> EVAL --> MON

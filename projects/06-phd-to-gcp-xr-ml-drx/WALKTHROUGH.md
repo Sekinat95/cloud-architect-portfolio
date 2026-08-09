@@ -46,8 +46,7 @@ Two models trained in parallel on the same preprocessed data, both predicting
 
 No gating between them — both always proceed to registration. The point is
 side-by-side RMSE comparison across paradigms, not selecting a winner
-(this mirrors ADR-003's reasoning from Project 04/05: a gate implies a
-candidate to reject, and here there isn't one).
+(this mirrors ADR-003's reasoning from Project 04/05: a gate implies a candidate to reject, and here there isn't one).
 
 Four buckets, separated by concern:
 - raw-data — source CSVs
