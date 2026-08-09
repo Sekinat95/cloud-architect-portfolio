@@ -20,7 +20,7 @@ As will be further explained, this design choice is deliberate and was informed 
 
 ## Key Architectural Decisions
 Brief summary of the main decisions made, linking to ADRs.
-- [ADR-001](./docs/decisions/ADR-001-vpc-and-vpn-network-design.md) — single vpc 
+- [ADR-001](./decisions/ADR-001-vpc-and-vpn-network-design.md) — single vpc 
 - [ADR-002](./docs/decisions/ADR-002-DMS-vs-alternatives.md) — DMS
 - [ADR-003](./docs/decisions/ADR-003-cloudsql-vs-alloydb.md) — cloudSQL v AlloyDB
 - [ADR-004](./docs/decisions/ADR-004-pglogical-for-CDC.md) — pglogical for CDC
@@ -35,14 +35,6 @@ Brief summary of the main decisions made, linking to ADRs.
 | Private Service Access | `10.80.0.0/16` | GCP-managed range — Cloud SQL and DMS use this |
 | IAP range | `35.235.240.0/20` | Secure SSH and TCP access from Cloud Shell |
 
-### Key Networking Insight
-
-Cloud SQL does not use user-defined subnets. Its private IP (`10.80.0.3`) is
-allocated from the **Private Service Access** range — a GCP-managed peering
-range attached to the VPC. This same range is also where DMS originates its
-connection traffic when reaching the source database.
-
----
 
 ## Components
 
@@ -87,7 +79,7 @@ Replication stops → Cloud SQL becomes standalone primary
 
 ---
 
-## Key Discovery — DMS Connectivity
+<!-- ## Key Discovery — DMS Connectivity
 
 The most significant finding of this project relates to how DMS connects to the
 source database. GCP documentation describes using a DMS private connection
@@ -111,9 +103,9 @@ gcloud compute addresses describe private-service-access \
   --global \
   --project=$PROJECT_ID \
   --format="value(address,prefixLength)"
-```
+``` -->
 
----
+<!-- ---
 
 ## pglogical Requirement
 
@@ -168,7 +160,7 @@ Spot Sample           ✅ PASS
 ✅ ALL CHECKS PASSED
 ```
 
----
+--- -->
 
 ## Infrastructure as Code
 
@@ -186,7 +178,7 @@ All infrastructure is provisioned using Terraform:
 | `outputs.tf` | Key resource outputs |
 | `scripts/startup.sh` | PostgreSQL installation and configuration |
 
----
+<!-- ---
 
 ## Equivalent Services on AWS and Azure
 
@@ -200,9 +192,9 @@ All infrastructure is provisioned using Terraform:
 | VPC | VPC | Virtual Network |
 | IAP | AWS Systems Manager Session Manager | Azure Bastion |
 
----
+--- -->
 
-## Lessons Learned
+<!-- ## Lessons Learned
 
 | # | Lesson |
 |---|---|
@@ -217,23 +209,6 @@ All infrastructure is provisioned using Terraform:
 | 9 | Destination connection profile is lost when migration job is deleted |
 | 10 | Use `restart` not `delete/create` when retrying failed migration jobs |
 
----
+--- -->
 
-## Estimated Cost
 
-| Resource | Duration | Estimated Cost |
-|---|---|---|
-| Compute Engine VM (e2-medium) | 8 hours | ~€0.10 |
-| Cloud SQL (db-custom-2-4096) | 8 hours | ~€0.80 |
-| Cloud Storage (state bucket) | — | ~€0.01 |
-| DMS (under 50GB) | — | Free |
-| **Total** | | **~€1.00** |
-
----
-
-## Related Projects
-
-- [02-onprem-to-cloud-data-migration](../02-onprem-to-cloud-data-migration) —
-  Two-VPC architecture with Classic VPN simulating a more complex network topology.
-  Documents the troubleshooting journey and architectural trade-offs of using DMS
-  with a VPN-separated source and destination.
