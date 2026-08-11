@@ -1,9 +1,9 @@
 # Overview
-A failed simulation of continuous data migration between on-prem and cloud using two VPCs (one for each.)
+This version of the [DB migration from on-prem to cloud](../../02-onprem-to-cloud-data-migration-single-vpc/README.md) which uses 2 VPCs rather than one is detailed here.
 
 
 # Architecture Diagrams
-A diagram of intended architecture (or equivalent production grade architecture) vs intended simulation architecture and what broke.
+[Overview diagram](../diagrams/architecture-overview.mmd) of the 2 VPC design is available
 
 
 
@@ -20,5 +20,7 @@ A diagram of intended architecture (or equivalent production grade architecture)
 
 
 
-# POC Video Demo Results
+# Results
+
+## Reasons for failure
 

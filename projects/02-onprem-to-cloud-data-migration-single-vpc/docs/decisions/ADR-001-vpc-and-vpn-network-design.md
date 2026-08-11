@@ -1,4 +1,4 @@
-# ADR-001: VPC and VPN Network Design
+# ADR-001: Single VPC vs 2-VPC Architecture
 
 ## Status
 Accepted

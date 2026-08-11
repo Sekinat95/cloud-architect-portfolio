@@ -1,4 +1,37 @@
-# RAG PIPELINE
+# Retreival Augmented Generation (RAG) Pipeline
 
-This project contains a basic pipeline for retreival augmented generation (RAG). The basic overview of [architectural decisions](../07-RAG-pipeline/docs/ADD.md) and [full execution walkthrough](WALKTHROUGH.md) are documented.
+## Introduction
+This project details the execution of a basic RAG pipeline used to query job application cover letters.
+
+## Architecture Overview
+### Architecture Diagram
+```mermaid
+graph TD
+  GCS["Data ingestion"] --> RAGPL
+  subgraph RAGPL["RAG Pipeline"]
+      LGCH["LangChain Document Loaders"] --> LGPRS
+      LGPRS["Preprocessing <br/> Langchain text splitters"] --> VAEMB
+      VAEMB["VA Embedding API <br/> langchain-google-vertexai"] --> STR
+      STR["CloudSQL for postgres"] --> IND
+      IND["pgvector extension via langchain's pgvector"] --> RTV
+      RTV["same storage/indexing instance <br/> langchain retreival interface"] --> AUG
+      AUG["Augmentation and Generation <br/> chatvertexai, langchain lcel chains"] --> RAGPL_END["RAG Output"]
+    end
+
+  subgraph PPRC["Post-processing <br/> custom python checks, API safety filters"]
+  end
+
+  subgraph EVAL["RAGAS package"]
+  end
+
+  subgraph MON["GCP Cloud Observability suite"]
+  end
+
+  RAGPL --> PPRC --> EVAL --> MON
+```
+
+
+The architecture decisions are detailed [here](./docs/ADD.md)
+
+
 

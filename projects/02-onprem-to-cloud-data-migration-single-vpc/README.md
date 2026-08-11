@@ -1,28 +1,32 @@
-# Overview
-A simulated lift-and-shift data migration between on-prem and cloud enviroments with continuous replication through change data capture (CDC). 
+# ON-PREM TO CLOUD DATABASE MIGRATION
 
+## Introduction
+This project replicates continuos database (DB) migration comprising change data capture (CDC) simulated entirely in GCP.
+<!-- [Full Architectural Overview](../diagrams/architecture-overview.png) -->
+## Architecture Overview
+The architecture uses a single virtual private cloud(VPC) which contains the source and destination databases. This choice is documented [here](./docs/decisions/ADR-001-vpc-and-vpn-network-design.md)
+The archiecture overview diagram is as follows:
 
-# Architecture Diagrams
+```mermaid
+graph LR
+  SM[Secret Manager] --> VPC
+  OINTF["Operator Interface <br/> GCP Cloudshell"] --> VPC
 
-[Full Architectural Overview](../diagrams/architecture-overview.png)
+  subgraph VPC["Single VPC"]
+    SRC["Source VM<br/>pglogical publisher"] -->|PSA| DMS[DMS Replication Instance]
+    DMS -->|PSA| DST["Cloud SQL<br/>PostgreSQL destination"]
+  end
+```
 [Network Topology](../diagrams/network-topology.png)
 [Migration Flow](../diagrams/migration-flow.png)
 
 
-# Architecture Decision Records
+## Scope 
+This project implements the onprem to cloud migration using GCP services. It covers a single VPC architecture documented in this folder and the [2 VPC architecture](../03-onprem-to-cloud-data-migration/README.md)
 
-| ADR | Title | Status | Date |
-|---|---|---|---|
-| ADR-001 | [Single VPC vs Two-VPC](./decisions/ADR-001-vpc-and-vpn-network-design.md) | Accepted | 2026-04-23 |
-| ADR-002 | [DMS vs Alternatives ](./decisions/ADR-002-DMS-vs-alternatives.md)| Accepted | 2026-04-23 |
-| ADR-003 | [Cloud SQL vs AlloyDB ](./decisions/ADR-003-cloudsql-vs-alloydb.md)| Accepted | 2026-04-23 |
-| ADR-004 | [pglogical for CDC ](./decisions/ADR-004-pglogical-for-CDC.md)| Accepted | 2026-04-23 |
-| ADR-005 | [Terraform for IaC](./decisions/ADR-005-Terraform-for-IaC.md) | Accepted | 2026-04-23 |
-
-
-
-
-# POC Video Demo Results
+## Results
+The video demos of the results showing the replication until change data capture, promotion, cutoff and validation are as follows:
+### Demo
 [Full Implementation Until CDC](https://www.loom.com/share/806b175b55764ebea9e51bb93447789c)
 [CDC to promotion and cutoff + Validation](https://www.loom.com/share/7471ae18ceb14cc2b39a9b15b8da1092)
 

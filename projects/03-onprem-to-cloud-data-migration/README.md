@@ -1,3 +1,31 @@
 # ON-PREM TO CLOUD MIGRATION (TWO VPS ATTEMPT)
 
+## Introduction
+
+## Architectural Overview
+
+### Diagram
+```mermaid
+graph LR
+  SM[Secret Manager] --> VPC1
+  INF[Operator Interface<br/>Cloudshell] --> VPC1
+  DMS[DB Migration Service] --> VPC1
+  DMS --> VPC2
+
+  subgraph VPC1["VPC 1"]
+    SRC["Source VM<br/>pglogical publisher"]
+  end
+
+  subgraph VPN["Cloud VPN"]
+  end
+
+  subgraph VPC2["VPC 2"]
+    DST["Cloud SQL<br/>PostgreSQL destination"]
+  end
+
+  VPC1 --> VPN --> VPC2
+```
+
+## Results
+
 

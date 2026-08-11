@@ -1,4 +1,4 @@
-# CLOUD SYSTEM ARCHITECTURE PORTFOLIO
+# MLOps, Cloud Architecture & Integration Portfolio
 This repository contains artefacts (including architecture decision documents, diagrams, walkthroughs and demos) of independent projects carried out under cloud systems architecture. A lot of the projects are rooted in Machine Learning Engineering and Operations. They span end-to-end MLOps pipelines, cloud native infrastructure design and system integration. They are grounded in production gractices including infrastructure as code (IaC), automation (CI/CD), formal architectural documentation and third-party API integrations.
 Each project is contained in a distinct folder which follows the following structure:
 
