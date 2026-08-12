@@ -1,7 +1,7 @@
 # Retreival Augmented Generation (RAG) Pipeline
 
 ## Introduction
-This project details the execution of a basic RAG pipeline used to query job application cover letters.
+This project details the end-to-end RAG pipeline on GCP for document Q&A. LangChain, Vertex AI embeddings/generation, pgvector on cloudSQL as well as IaC through terraform. Multi-resource retreival and grounded refusal on insufficient context
 
 ## Architecture Overview
 ### Architecture Diagram
@@ -29,9 +29,10 @@ graph TD
 
   RAGPL --> PPRC --> EVAL --> MON
 ```
+The full architecture design and decisions are detailed [here](./docs/ADD.md)
 
-
-The architecture decisions are detailed [here](./docs/ADD.md)
+## Scope
+## Results
 
 
 

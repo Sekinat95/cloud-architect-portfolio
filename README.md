@@ -1,10 +1,14 @@
 # MLOps, Cloud Architecture & Integration Portfolio
-This repository contains artefacts (including architecture decision documents, diagrams, walkthroughs and demos) of independent projects carried out under cloud systems architecture. A lot of the projects are rooted in Machine Learning Engineering and Operations. They span end-to-end MLOps pipelines, cloud native infrastructure design and system integration. They are grounded in production gractices including infrastructure as code (IaC), automation (CI/CD), formal architectural documentation and third-party API integrations.
-Each project is contained in a distinct folder which follows the following structure:
+## Portfolio Thesis
+In this repository, I show, through handson implementation and documentation my understanding and experience and curiousity around cloud systems particularly machine learning operations (MLOps), integration enginering and architecture etc. 
+My background combines expertise in Distributed Systems and Applied Machine Learning as well as Telecommunications Engineering. I also have experience working on production API design, engineering and integrations. 
+This repository contains projects that showcase my knowledge of cloud systems architecture, MLOps, and Integration engineering. It contains the architecture design documents (ADDs) as well as the architecture decision record (ADRs), architecture diagrams and implementation artifacts including replication walkthroughs of each project. These projects are grounded in production practices including Infrastructure as code (IaC), automation (CI/CD), formal architectural documentationa and third party API integrations. 
+
+*This portfolio is a living document, continuously evolving as projects are iterated upon and new ones are added.*
+
 
 ## Repository Structure
-
-Each project under `/projects` is a self-contained, independently deployable PoC and follows a consistent layout:
+Each project is contained in a distinct folder which follows the following structure:
 
 ```
 /projects/NN-project-name
@@ -23,47 +27,38 @@ Each project under `/projects` is a self-contained, independently deployable PoC
 ├── /src  (or /pipeline)          # Application / pipeline code
 └── /diagrams                     # Architecture and flow diagrams (PNG)
 ```
-
-**Conventions across projects:**
-- One GCP project per PoC — clean billing isolation, 
-<!-- `terraform destroy` for full teardown -->
-- `README.md` is the entry point; `WALKTHROUGH.md` is the reproducible build log
-- Every non-trivial decision is documented in an architecture decision record (ADR)
-- `.env` files are gitignored and created manually, never committed
-- Project Flow Diagrams included
- <!-- **finish the rest of the diagrams please -->
+Each project under `/projects` is a self-contained, independently deployable PoC and follows a consistent layout
 
 
-
-# OVERVIEW OF EACH PROJECT:
+## List of Projects:
 
 - **PROJECT1 -> DB Migration with CDC - Single VPC**
     - *Project Folder*: [02-onprem-to-cloud-data-migration-single-vpc](./projects/02-onprem-to-cloud-data-migration-single-vpc/) 
-    - *Short Description*: Single VPC contains both source and destination databases in a simulation of continuous DB migration using database migration service (DMS) and change data capture (CDC)
+    - *Short Description*: Simulated database migration from on-prem to cloud entirely on GCP.Using a single virtual private cloud(VPC). Achieved continuous replication through postgreSQL pglogical change data capture(CDC)
     - *README*: [Single VPC DB Migrattion README](./projects/02-onprem-to-cloud-data-migration-single-vpc/README.md)
     - *Diagram*: [Full Architectural Overview](./projects/02-onprem-to-cloud-data-migration-single-vpc/diagrams/architecture-overview.mmd) 
    
 
-- **PROJECT1_2 -> DB Migration with CDC - Two VPCs**
+<!-- - **PROJECT1_2 -> DB Migration with CDC - Two VPCs**
     - *Project Folder*: [03-onprem-to-cloud-data-migration](./projects/03-onprem-to-cloud-data-migration/)
-    - *Short Description*: Using two VPCs, simulating an on-prem to cloud DB migration and demonstrating why it fails in GCP.
+    - *Short Description*: Replicating the Single VPC DB migration simulation architecture with a 2-VPC design. Documenting the failures.
     - *README*: [Two VPCs DB Migration README](./projects/03-onprem-to-cloud-data-migration/README.md)
     - *Diagram*: [Full Architecture Overview](./projects/03-onprem-to-cloud-data-migration/diagrams/architecture-overview.mmd)
-    <!-- - *Demo of Implementation* -->
+    - *Demo of Implementation* -->
 
 - **PROJECT2 -> MLOps Inference Pipeline**
     - *Project Folder*: [04-mlops-pipeline-inference-only](./projects/04-mlops-pipeline-inference-only/)
-    - *Short Description*: End-to-end inference pipeline of financial sentiments analysis using FinBERT (a domain specific transformer model finetuned on financial text) covering ingestion, preprocessing, model serving and prediction output. 
+    - *Short Description*: End-to-end inference pipeline of financial sentiments analysis using FinBERT (a domain specific transformer model finetuned on financial text) covering ingestion, preprocessing, model serving and prediction output. In a second iteration, integrating a text to speech API on the inference request functionality.
     - *README*: [INFERENCE PIPELINE README](./projects/04-mlops-pipeline-inference-only/README.md)
     - *Diagram*: [Full Architectural Overview](./projects/03-onprem-to-cloud-data-migration/diagrams/architecture-overview.mmd)
     <!-- - *Demo of Implementation*: -->
 
 
-- **PROJECT3 -> MLOps Inference Pipeline with TTS Integration (ElevenTTS)**
+<!-- - **PROJECT3 -> MLOps Inference Pipeline with TTS Integration (ElevenTTS)**
     - *Project Folder*: [05-inference-pipeline-w-eleventts](./projects/05-inference-pipeline-w-eleventts/)
-    - *Short Description*: End-to-end inference pipeline of financial sentiments analysis using finBERT(the popular final model trained on top of BERT) and with text to speech integration using elevenLabs TTS API.
+    - *Short Description*: End-to-end inference pipeline of financial sentiments analysis using finBERT and with text to speech integration using elevenLabs TTS API.
     - *README*: [ELEVENTTS INTEGRATION README](./projects/05-inference-pipeline-w-eleventts/README.md)
-    - *Diagram*: [Full Architectural Overview](./projects/04-mlops-pipeline-inference-only/diagrams/architecture-overview.mmd)
+    - *Diagram*: [Full Architectural Overview](./projects/04-mlops-pipeline-inference-only/diagrams/architecture-overview.mmd) -->
 
 - **PROJECT4 -> END-TO-END Forecasting Pipeline (Data Ingestion - Model Monitoring) => PhD Replication**
     - *Project Folder*: [06-phd-to-gcp-xr-ml-drx](./projects/06-phd-to-gcp-xr-ml-drx/)
@@ -74,10 +69,18 @@ Each project under `/projects` is a self-contained, independently deployable PoC
 
 - **PROJECT5 -> Retreival Augmented Generation (RAG) Pipeline**
     - *Project Folder*: [07-RAG-pipeline](./projects/07-RAG-pipeline/)
-    - *Short Description*: A basic RAG pipeline to query a pool of job application cover letters.
+    - *Short Description*: End-to-end RAG pipeline on GCP for document Q&A. LangChain, Vertex AI embeddings/generation, pgvector on cloudSQL as well as IaC through terraform. Multi-resource reteival and grounded refusal on insufficient context
     - *README*: [RAG README](./projects/07-RAG-pipeline/README.md)
     - *Diagram*: [Full Architectural Overview](./projects/07-RAG-pipeline/diagrams/architecture-overview.mmd)
 
 
 
+<!-- **Conventions across projects:**
+- One GCP project per PoC — clean billing isolation, 
+<!-- `terraform destroy` for full teardown -->
+<!-- - `README.md` is the entry point; `WALKTHROUGH.md` is the reproducible build log
+- Every non-trivial decision is documented in an architecture decision record (ADR)
+- `.env` files are gitignored and created manually, never committed
+- Project Flow Diagrams included -->
+ <!-- **finish the rest of the diagrams please --> 
 
