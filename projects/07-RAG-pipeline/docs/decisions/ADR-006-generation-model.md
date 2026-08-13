@@ -1,5 +1,5 @@
-# ADR-001: CloudSQL pgvector vs managed vector database
-<!--  Generation model choice + migration — gemini-2.5-flash (migrated from gemini-2.0-flash-001 after its June 2026 discontinuation) — worth an ADR/ADR-amendment showing you handle model deprecation.-->
+# ADR-006: Generation model
+
 
 ## Status
 Accepted
@@ -7,33 +7,9 @@ Accepted
 ## Date
 2026-04-17
 
-## Context
+## Context and decision
+Gemini-2.5-flash was used because emini-2.0-flash-001 was discontinued in June 2026.
 
 
-## Decision
-
-
-
-## Alternatives Considered
-
-| Option | Reason Rejected |
-|--------|----------------|
-
-
-## Rationale
-
-
-## Consequences
-
-### Positive
-
-
-
-### Negative / Tradeoffs
-
-
-
-## Related Decisions
-
-
-## References
+## Alternatives
+Moving to a larger/more expensive Gemini tier was rejected as unnecessary costwire for a PoC's demonstration needs. Using an old deprecated model is also not viable either.

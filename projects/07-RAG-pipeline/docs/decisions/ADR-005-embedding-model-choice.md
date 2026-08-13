@@ -1,5 +1,5 @@
-# ADR-001: CloudSQL pgvector vs managed vector database
-<!-- Embedding model choice — text-embedding-004 via Vertex AI, chosen for native GCP integration over a third-party embedding API.. -->
+# ADR-005: Embedding model choice
+
 
 ## Status
 Accepted
@@ -7,33 +7,15 @@ Accepted
 ## Date
 2026-04-17
 
-## Context
-
-
-## Decision
-
-
+## Context and decision
+The embedding model choice used was `text-embedding-004` via vertex AI. This was chosen over a third party embedding API for its native GCP integration.This choice keeps the whole pipleine in one cloud ecosystem (auth, billing, latency) simplifying IAM and networking vs calling an external API.
 
 ## Alternatives Considered
+The alternatives are openAI/Cohere embedding APIs. They were rejected to avoid a second vendor's auth/billing/network dependcy in an otherwise all GCP architecture.
 
-| Option | Reason Rejected |
-|--------|----------------|
-
-
-## Rationale
-
-
+<!-- ## Rationale
 ## Consequences
-
 ### Positive
-
-
-
 ### Negative / Tradeoffs
-
-
-
 ## Related Decisions
-
-
-## References
+## References -->

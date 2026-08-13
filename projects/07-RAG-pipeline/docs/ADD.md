@@ -1,7 +1,5 @@
 # RAG PIPELINE - Architectural Decisions
 
-
-
 # Architecture Diagram
 
 [Architecture diagram](../diagrams/architecture-overview.mmd)
