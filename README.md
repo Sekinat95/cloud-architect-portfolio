@@ -1,8 +1,8 @@
 # MLOps, Cloud Architecture & Integration Portfolio
 ## Portfolio Thesis
-In this repository, I show, through handson implementation and documentation my understanding and experience and curiousity around cloud systems particularly machine learning operations (MLOps), integration enginering and architecture etc. 
+In this repository, I show through hands-on implementation and documentation, my understanding and experience and curiousity around cloud systems particularly machine learning operations (MLOps), integration engineering and architecture etc. 
 My background combines expertise in Distributed Systems and Applied Machine Learning as well as Telecommunications Engineering. I also have experience working on production API design, engineering and integrations. 
-This repository contains projects that showcase my knowledge of cloud systems architecture, MLOps, and Integration engineering. It contains the architecture design documents (ADDs) as well as the architecture decision record (ADRs), architecture diagrams and implementation artifacts including replication walkthroughs of each project. These projects are grounded in production practices including Infrastructure as code (IaC), automation (CI/CD), formal architectural documentationa and third party API integrations. 
+This repository contains projects that showcase my knowledge of cloud systems architecture, MLOps, and Integration engineering. It contains the architecture design documents (ADDs) as well as the architecture decision record (ADRs), architecture diagrams and implementation artifacts including replication walkthroughs of each project. These projects are grounded in production practices including Infrastructure as code (IaC), automation (CI/CD), formal architectural documentation and third party API integrations. 
 
 *This portfolio is a living document, continuously evolving as projects are iterated upon and new ones are added.*
 
