@@ -19,7 +19,7 @@ The alternative is a larger corpus (10-100 documents) and it was rejected as unn
 
 ## Scope expansion in other iterations
 
-For higher iterations of this poc, the focus will shift to retrival at scale, index performance under load, and chunking trade-offs  at volume. We will demonstrate sharding, HNSW tuning, batch embedding etc when this is done
+For higher iterations of this poc, the focus will shift to retrival at scale, index performance under load, and chunking trade-offs  at volume. We will demonstrate sharding, Hierarchical Navigable Small World(HNSW) tuning, batch embedding etc when this is done
 
 
 <!-- ## Consequences
