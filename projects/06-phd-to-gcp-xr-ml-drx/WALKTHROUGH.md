@@ -212,17 +212,72 @@ drew beat_saber rows — sampling artefact to flag, not a real cross-app result)
 
 ## Phase 8 — CI/CD
 
-### Step 24 — cloudbuild.yaml
+<!-- ### Step 24 — cloudbuild.yaml
 
 Same pattern as Project 04/05: compile + submit pipeline in one `bash -c`
 step (pip installs don't persist between Cloud Build steps), then copy
 `pipeline.yaml` to `gs://phd-to-gcp-xr-ml-drx-pipeline-root/compiled/`.
 Trigger service account: `full-mlops-pipeline-sa`.
-
----
+--- -->
+``cloudbuild.yaml`` contains the steps to run the pipeline. This file, the github repository branch containing it and the project need to be specified in cloudbuild to set up a trigger for CI automation. The steps it contains are as follows:
+1. install dependecies, compile and submit pipeline
+2. upload compile pipeline yaml to GCS
+3. Cloudbuild config including project_id, region, service account etc
 
 ## Teardown
 
 cd terraform
 terraform destroy
 gsutil rm -r gs://$BUCKET_NAME
+
+## MONITORING
+There are three planned observability tasks:
+  - General pipeline-level monitoring
+  - prediction drift
+  - data drift and skew monitoring
+ ### General pipeline-level monitoring
+This involved the definition of three metrics and their corresponding policies, namely:
+  - pipeline failures
+  - latency
+  - row count anomalies
+**procedure for defining a metric and its policy**
+  1. create a logbased metric (eg pipeline failures) if it doesnt exist in the available metrics in console
+  ```bash
+  gcloud logging metrics create pipeline_failures \
+    --description="Counts failed Vertex AI pipeline job states" \
+    --log-filter='resource.type="aiplatform.googleapis.com/PipelineJob" AND jsonPayload.state="PIPELINE_STATE_FAILED"'
+  ```
+
+  2. create an alert policy on that metric. Can be created via console on in cli via yaml files
+  ```yaml
+  displayName: "Pipeline Failure Alert"
+  conditions:
+    - displayName: "Pipeline job failures > 0"
+      conditionThreshold:
+        filter: 'resource.type="aiplatform.googleapis.com/PipelineJob" AND metric.type="logging.googleapis.com/user/pipeline_failures"'
+        comparison: COMPARISON_GT
+        thresholdValue: 0
+        duration: 0s
+        aggregations:
+          - alignmentPeriod: 300s
+            perSeriesAligner: ALIGN_COUNT
+  combiner: OR
+  notificationChannels: []
+```
+create it as a yaml file save it as *pipeline-failures-alert-policy.yaml*
+then create it:
+```bash
+  gcloud alpha monitoring policies create --policy-from-file=pipeline-failures-alert-policy.yaml
+```
+  3. check its live:
+  *gcloud alpha monitoring policies list --format="table(displayName,name)"*
+  4. create a notification channel for the metric and policy. update your created policy with it
+```bash
+    gcloud alpha monitoring channels create  --display-name="Pipeline Alerts Email"  --type=email  --channel-labels=email_address=xxxx.yyyyyy@gmail.com
+```
+5. Grab the name of the notification channel from the output (looks like projects/project-name/notificationChannels/XXXX), then attach it to your existing policy
+```bash
+gcloud alpha monitoring policies update projects/project-name/alertPolicies/8057359354429863921 \
+  --add-notification-channels=projects/project-name/notificationChannels/XXXX
+```
+
